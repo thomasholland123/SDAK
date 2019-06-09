@@ -8,3 +8,5 @@ This is aimed towards simple uses and tries to simplify the data processing of s
 
 ## EXAMPLE USE
 Here is an example use flowchart:
+
+![Alt text](/flowchart.jpg?raw=true "Example Workflow")
