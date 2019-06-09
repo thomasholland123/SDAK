@@ -4,5 +4,4 @@ Science Data Analysis Kit
 ## ABOUT
 
 This is aimed towards simple uses and tries to simplify the data processing of scientific investigation.
-
-## HOW TO INSTALL
+**For more information, see the wiki**
