@@ -5,3 +5,6 @@ Science Data Analysis Kit
 
 This is aimed towards simple uses and tries to simplify the data processing of scientific investigation.
 **For more information, see the wiki**
+
+## EXAMPLE USE
+Here is an example use flowchart:
