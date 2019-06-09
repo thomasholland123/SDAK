@@ -19,6 +19,12 @@ def firstTime():
         print('Welcome to SciLabs, this is an interface to help with data analysis for sciences \nPlease remmeber to enter the value shown in the [], but without the surrounding []')
         firstStart = False
 
+def viewData():
+    global anyData
+    global DataFile
+
+        
+
 def saveYesNo():
     global yesNo
     while yesNo not in ('Y', 'N'):
