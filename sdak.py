@@ -8,7 +8,6 @@ mainMenuPrint: str = "Main Menu: \n[1] New Data \n[2] Open Data \n[3] Save Data 
 firstStart: bool = True
 anyData: bool = False
 dataSaved: bool = False
-contin = False
 yesNo = ''
 seeData = ''
 DataFile: str = ''
