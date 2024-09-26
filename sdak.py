@@ -1,10 +1,10 @@
-from matplotlib import *
-from numpy import *
-from scipy import *
-from pandas import *
+# Import statments
+import shelve
 
+# Definitions of global variables
 mainMenuPrint: str = "Main Menu: \n[1] New Data \n[2] Open Data \n[3] Save Data \n[4] View Data \n[5] Edit Data \n[6]" \
-                     " Show Save File Path \n[7] Check Concordant Results \n[8] Average Data\n[9] Plot Graph"
+                     " Show Save File Path \n[7] Check Concordant Results \n[8] Average Data\n[9] Plot Graph " \
+                     "\n[10] Help"
 firstStart: bool = True
 anyData: bool = False
 dataSaved: bool = False
@@ -12,46 +12,46 @@ yesNo = ''
 seeData = ''
 DataFile: str = ''
 
+
+# Setting up definitions of functions
 def firstTime():
     global firstStart
-    while firstStart == True:
-        print('Welcome to SciLabs, this is an interface to help with data analysis for sciences \nPlease remmeber to enter the value shown in the [], but without the surrounding []')
+    while firstStart:
+        print(
+            'Welcome to SciLabs, this is an interface to help with data analysis for sciences \nPlease remmeber to '
+            'enter the value shown in the [], but without the surrounding []')
         firstStart = False
 
-def saveYesNo():
-    global yesNo
-    while yesNo not in ('Y', 'N'):
-        yesNo = input('Do you want to save: \n[Y]es \n[N]o:\n')
-        if yesNo == 'Y':
-            saveData()
-            break
-        elif yesNo == 'N':
-            pass
-            break
-        else:
-            errorOut(1)
+def yesNo():
+    yesNo = str(input('Enter [Y]es or [N]o:\n'))
+    if yesNo == 'Y':
+        return True
+    elif yesNo == 'N':
+        return False
+    else:
+        errorOut(1)
+
+
+def fileLoc():
+    print('Please enter the file location with .dat after it. This should either be relative to where the current '
+          'program is being run or an absolute path. If unsure please type \'help\'')
+    location = str(input('Enter file path or help:\n'))
+    if location == 'help':
+        help(filelocation)
+    else:
+        return location
 
 def openData():
-    global seeData
-    global dataSaved
-    global path
-    global DataFile
-    if dataSaved == False:
-            print('Current Data is not saved')
-            saveYesNo()
+    print('This is only for when there is a file already present. If you want to create a file, from the main menu '
+          'type \'1\' for \'New Data\'')
+    global f
+    f = shelve.open(fileLoc(), flag='w', writeback=True)
+    print('Do you want to see the contence?')
+    yesNo()
+    if yesNo:
+        viewData()
     else:
         pass
-    path = str(input('Enter file path \nShould be a .txt file in current directory where this program is running from:\n'))
-    DataFile = open(path, 'r+')
-
-    while seeData not in ('Y', 'N'):
-        seeData = str(input('Do you want to see your data: \n[Y]es \n[N]o: \n'))
-        if seeData == 'Y':
-            viewData()
-        elif seeData == 'N':
-            pass
-        else:
-            errorOut(1)
 
 
 def errorOut(state):
@@ -60,9 +60,17 @@ def errorOut(state):
         print('Input not recognised, please try again\n')
     elif state == 2:
         print('No data present, please create data\n')
+    elif state == 3:
+        print('Help for this topic not here, please go to https://github.com/thomasholland123/SDAK/wiki')
     else:
         print('Big problem: Error not known!\n')
 
+def help(topic):
+    print('Welcome to the Help')
+    if topic == 'main':
+        print('Please go to https://github.com/thomasholland123/SDAK/wiki for all the help topics.')
+    else:
+        errorOut(3)
 
 def mainMenu():
     firstTime()
@@ -88,9 +96,11 @@ def mainMenu():
         plotGraph()
     elif menuInput == 1:
         newData()
+    elif menuInput == 10:
+        help('main')
     else:
         errorOut(1)
 
-
+# main program loop
 while True:
     mainMenu()
